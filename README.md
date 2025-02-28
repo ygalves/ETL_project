@@ -42,7 +42,7 @@ Está más que justificado utilizar la inteligencia artificial y el aprendizaje 
 
       **Imagen 1: Tren de Producción**
 
-      |![](ML final/Aspose.Words.cbc4d122-9082-4763-a26e-3e34c2d146c8.001.png)|
+      |![](/ML final/Aspose.Words.cbc4d122-9082-4763-a26e-3e34c2d146c8.001.png)|
       | :-: |
 
       Image source: https://www.x-mol.net/paper/article/5795495
@@ -54,7 +54,7 @@ Los datos usados en este paper corresponden a 6637lotes producidos por 8 trenes 
 
 |**Columns**|**Details**|**Total**|
 | :-: | :-: | :-: |
-|ID|Register ID|6637|
+|ID|Register ID|11810|
 |Prod|Identification of manufactured products|33|
 |Type|Product Family group|4|
 |Train|Manufacturing Batch Reactor and devices instances group|8|
