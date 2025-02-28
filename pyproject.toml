@@ -1,0 +1,17 @@
+[project]
+name = "etl-project"
+version = "1.0.0"
+description = "Ejercicio de Extracción, Transformacion y Carga (ETL) de datos usando Healthcare Dataset - EDA desde kaggle"
+authors = [
+    {name = "Yoniliman Galvis",email = "yoniliman.galves@uao.edu.co"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = "3.00"
+dependencies = [
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
