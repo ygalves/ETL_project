@@ -51,20 +51,20 @@ Está más que justificado utilizar la inteligencia artificial y el aprendizaje 
    1. ## *Explicacion De Los Datos De Proceso*
 Los datos usados en este paper corresponden a 14876 lotes producidos por 8 trenes de producción (A,B,C,D,E;F,G,H), los cuales pueden producir 4 familias de producto y de los cuales existen 78 variantes de producto, durante 516 dias (12399 horas).
 
-
-|**Columns**|**Details**|**Total**|
-| :-: | :-: | :-: |
-|Datetime|Datetime of production start|516 days|
-|ID|Register ID|14876|
-|Prod|Identification of manufactured products|51|
-|Type|Product Family group|4|
-|Train|Manufacturing Batch Reactor and devices instances group|8|
-|Unit|Unit of process used|3|
-|Phase_ID|Components and Phases|78|
-|EU|Engineering units|7|
-|Value|Value as a percentage with respect to the adjusted value of the real value. (additions, wait_times, speeds, temperatures, pressures, etc.)||
-|Check|Regular pH verification yes or not?||
-|Total|all transactions logged in csv|236530|
+| **Columns** | **Details**                                                                 | **Total** |
+|-------------|-----------------------------------------------------------------------------|-----------|
+| Datetime    | Datetime of production start                                                | 516 days  |
+| ID          | Register ID                                                                 | 14876     |
+| Prod        | Identification of manufactured products                                     | 51        |
+| Type        | Product Family group                                                        | 4         |
+| Train       | Manufacturing Batch Reactor and devices instances group                     | 8         |
+| Unit        | Unit of process used                                                        | 3         |
+| Phase_ID    | Components and Phases                                                       | 78        |
+| EU          | Engineering units                                                           | 7         |
+| Value       | Value as a percentage with respect to the adjusted value of the real value  |           |
+|             | (additions, wait times, speeds, temperatures, pressures, etc.)              |           |
+| Check       | Regular pH verification (yes or no?)                                        |           |
+| Total       | All transactions logged in CSV                                              | 236530    |
 
 **Tabla 1: Descripcion de DataSet**
 
