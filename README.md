@@ -42,7 +42,7 @@ Está más que justificado utilizar la inteligencia artificial y el aprendizaje 
 
       **Imagen 1: Tren de Producción**
 
-      |![train](/ML final/Aspose.Words.cbc4d122-9082-4763-a26e-3e34c2d146c8.001.png)|
+      |!![alt text](image-1.png)|
       | :-: |
 
       |![alt text](image.png)|

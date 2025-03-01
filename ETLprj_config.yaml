@@ -3,4 +3,4 @@ database:
   password: "password"
   host: "localhost"
   port: 5432
-  name: "Etl_prj"
+  name: "ETL_Prj"
