@@ -1,5 +1,5 @@
 # Hide credentials
-*.yaml
+.yaml
 config.json
 settings.py
 application.properties
