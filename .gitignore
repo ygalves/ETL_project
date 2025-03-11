@@ -1,3 +1,21 @@
+# Hide credentials
+*.yaml
+config.json
+settings.py
+application.properties
+.env
+Como id_rsa
+id_rsa.pub
+pem
+.crt
+.key
+.p12
+.pem
+.cer
+.pfx
+.jks
+.pkcs12
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
