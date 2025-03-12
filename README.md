@@ -79,3 +79,96 @@ Se registra la información de produccion durante 516 dias para los 8 trenes, du
 EL CSV corresponde a los valores guardados de forma secuencial por tanto existen 236530 filas, tenga en cuenta que la cantidad de fases depende del tipo de producto, adicionalmente, un tren esta compuesto por 3 elementos principales (de transformacion de materias prima), un tanque de prepesada donde se adicionan cantidades pequeñas medidas por bascula para mejorar la presicion, tanque de premezclado, esto permite realizar tareas simultaneas con el tanque mezclador principal y reducir el tiempo de lote y el tanque Mezclador el cual es el tanque principal donde llegan todos los materiales para el proceso de transformacion final, adicionalmente se adicionan los productos de mayor cantidad y aquellos que se inyectan usando medidores / contadores por flujo y las descargas de las unidades mas pequeñas.
 
 
+# Prepara tu entorno para trabajar con este notebook
+
+El Notebook de este Git fúe creado usando un workspace de VSCode, utilizamos pyenv para manejar la version de python y Poetry para gestionar las librerías y las versiones de las mismas.
+
+Prepara tu folder:
+
+# Configuración del área de trabajo para el Proyecto
+
+## 1. Crear una carpeta para el proyecto
+```bash
+mkdir mi_proyecto
+cd mi_proyecto
+```
+
+## 2. Configura el workspace en VS Code
+   *  Abre Visual Studio Code (VsCode)
+   *  "*Archivo*" \ "*Agregar carpeta al área de trabajo*"
+   *  Busca la carpeta que creaste para el proyecto '*mi_proyecto*' y selecciona el boton de "*Agregar*"
+   *  "*Archivo*" \ "*Guardar área de trabajo como*", coloca el nombre y selecciona el boton "*Guardar*"
+
+VsCode creará un archivo en la carpeta con el nombre del proyecto + "*.code-workspace*"
+Esto abrirá la carpeta en VS Code como un workspace, aunque no es necesario es una practica común cerrar VsCode y volverlo a Abrir
+
+### 3. Instalar y configurar pyenv
+*  Si aún no tienes pyenv instalado, sigue estos pasos:
+```bash
+curl https://pyenv.run | bash
+```
+
+*  Ahora Agrega pyenv a tu shell:
+```bash
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+```
+*  Reinicia tu terminal para aplicar los cambios.
+
+### 4. Instalar la versión de Python con pyenv
+*  Instala la versión de Python que necesitas:
+```bash
+pyenv install 3.x.x  # Reemplaza 3.x.x con la versión específica que necesitas
+```
+*  Crea un entorno virtual:
+```bash
+pyenv virtualenv 3.x.x mi_entorno  # Reemplaza 3.x.x con la versión de Python y "mi_entorno" con el nombre de tu entorno
+```
+*  Activa el entorno virtual:
+```bash
+pyenv activate mi_entorno
+```
+
+### 5. Configurar Poetry para manejar las librerías
+*  Instala Poetry si aún no lo tienes:
+```bash
+curl -sSL https://install.python-poetry.org | python3 -
+```
+*  Configura Poetry para usar el entorno virtual:
+```bash
+poetry config virtualenvs.in-project true
+```
+*  Configura Poetry en tu proyecto:
+```bash
+poetry init
+```
+*  Sigue las instrucciones para configurar tu pyproject.toml.
+
+### 6. Instalar dependencias con Poetry
+Para instalar dependencias, usa:
+```bash
+poetry add nombre_de_la_libreria
+```
+Esto actualizará tu archivo pyproject.toml y creará un archivo poetry.lock.
+
+### 7. Activar el entorno virtual de Poetry
+Para trabajar dentro del entorno virtual de Poetry, usa:
+*  Opción 1: Usar el comando env activate
+```bash
+eval "$(poetry env activate)"
+```
+*  Opción 2: Instalar el plugin shell
+Instalar el plugin:
+```bash
+poetry self add poetry-plugin-shell
+```
+Usar el comando shell
+```bash
+poetry shell
+```
+
+### 8. Configurar VS Code para usar el entorno virtual
+En VS Code, abre la paleta de comandos (Ctrl+Shift+P o Cmd+Shift+P en Mac) y selecciona Python: Select Interpreter. Elige el entorno virtual que creaste con pyenv.
+
+Estos son los ṕasos para tener un proyecto configurado como workspace en VS Code, con pyenv manejando la versión de Python y Poetry gestionando las librerías.
