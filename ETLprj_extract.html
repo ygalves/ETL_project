@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>ETLprj_entrega_1</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>ETLprj_extract</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7523,7 +7523,7 @@ a.anchor-link {
 <h3>02/27/2025 CALI - COLOMBIA</h3>
 <h3><strong>MAESTRIA EN INTELIGENCIA ARTIFICIAL Y CIENCIA DE DATOS</strong></h3>
 <h3><strong>ETL (EXTRACT, TRANSFORM AND LOAD)</strong></h3>
-<h3><strong>ENTREGA 1.0. </strong> TRABAJO FINAL - Ejercicio de Extracción, Transformacion y Carga (ETL) de datos usando Healthcare Dataset - EDA desde kaggle</h3>
+<h3><strong>ENTREGA 1.0. </strong> TRABAJO FINAL - Ejercicio de Extracción de datos usando Dataset de produccion</h3>
 <h3><strong>Profesor:</strong> JAVIER ALEJANDRO VERGARA ZORRILLA</h3>
 <h3><strong>Alumno:</strong></h3>
 <li><font color="lighblue"> 22500214 Yoniliman Galvis Aguirre </font></li>
@@ -7551,31 +7551,40 @@ jupyter
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+<h1 id="Verificar-Kernel">Verificar Kernel<a class="anchor-link" href="#Verificar-Kernel">¶</a></h1><p>Verificamos si el ambiente jupyter esta ejecutando el kernel en el entorno correcto, el resultado de las dos rutas debe coincidir, de lo contrario se debe de cambiar el kernel del jupyter notebook, una opcion es correr el enviroment desde poetry, en la terminal ejecute:</p>
+<div class="highlight"><pre><span></span>poetry<span class="w"> </span>run<span class="w"> </span>jupyter<span class="w"> </span>notebook
+</pre></div>
+<p>esto abrirá una version web de jupyter, en otro caso cambie el kernel y use los venv disponibles</p>
+<p>Si el notebook esta ejecutando un kernel diferente a la carpeta del proyecto cuando instale librerías se presentarán fallas en la ejecucion del código del notebook</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [55]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Este chunk permite verificar si el entorno de VStudio y la carpeta de pyenv están sincronizadas, se cargan librerias canónicas de python</span>
-<span class="c1"># Ejecuta tambien un comando sobre el bash (cmd en windows) para obtener el entorno de la carpeta de trabajo</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
 
 <span class="c1"># Ejecutar el comando de poetry desde Python</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">'poetry'</span><span class="p">,</span> <span class="s1">'env'</span><span class="p">,</span> <span class="s1">'info'</span><span class="p">,</span> <span class="s1">'--path'</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># Obtener la ruta del entorno virtual</span>
-<span class="n">env_path</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-
-<span class="c1"># Obtener la ruta del ejecutable de Python activo</span>
-<span class="n">python_path</span> <span class="o">=</span> <span class="n">shutil</span><span class="o">.</span><span class="n">which</span><span class="p">(</span><span class="s2">"python"</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El entorno virtual activo de poetry está en: </span><span class="si">{</span><span class="n">env_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El entorno virtual activo del kernel en el notebook está en: </span><span class="si">{</span><span class="n">python_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="c1"># Verificar si el comando se ejecutó correctamente</span>
+<span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">returncode</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Ruta del entorno virtual:"</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Error al ejecutar el comando:"</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7588,7 +7597,68 @@ jupyter
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>El entorno virtual activo de poetry está en: 
+<pre>Ruta del entorno virtual: /home/ygalvis/Documents/Study/ETL_project/.venv
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [56]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_poetry_env_path</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Ejecutar el comando de poetry desde Python</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">'poetry'</span><span class="p">,</span> <span class="s1">'env'</span><span class="p">,</span> <span class="s1">'info'</span><span class="p">,</span> <span class="s1">'--path'</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># Obtener la ruta del entorno virtual</span>
+        <span class="n">env_path</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">env_path</span>
+    <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error al ejecutar el comando de poetry: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">stderr</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_active_python_path</span><span class="p">():</span>
+    <span class="c1"># Obtener la ruta del ejecutable de Python activo</span>
+    <span class="n">python_path</span> <span class="o">=</span> <span class="n">shutil</span><span class="o">.</span><span class="n">which</span><span class="p">(</span><span class="s2">"python"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">python_path</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">poetry_env_path</span> <span class="o">=</span> <span class="n">get_poetry_env_path</span><span class="p">()</span>
+    <span class="n">active_python_path</span> <span class="o">=</span> <span class="n">get_active_python_path</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">poetry_env_path</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El entorno virtual activo de poetry está en: </span><span class="si">{</span><span class="n">poetry_env_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"No se pudo obtener la ruta del entorno virtual de poetry."</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">active_python_path</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El entorno virtual activo del kernel en el notebook está en: </span><span class="si">{</span><span class="n">active_python_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"No se pudo obtener la ruta del ejecutable de Python activo."</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>El entorno virtual activo de poetry está en: /home/ygalvis/Documents/Study/ETL_project/.venv
 El entorno virtual activo del kernel en el notebook está en: /home/ygalvis/Documents/Study/ETL_project/.venv/bin/python
 </pre>
 </div>
@@ -7600,7 +7670,7 @@ El entorno virtual activo del kernel en el notebook está en: /home/ygalvis/Docu
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [57]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span> <span class="c1">#manejo de archivos de configuracion .yaml</span>
@@ -7648,10 +7718,10 @@ El entorno virtual activo del kernel en el notebook está en: /home/ygalvis/Docu
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [58]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s2">"ETLprj_config.yaml"</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s2">"credentials/ETLprj_config.yaml"</span><span class="p">):</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
 </pre></div>
@@ -7675,7 +7745,7 @@ El entorno virtual activo del kernel en el notebook está en: /home/ygalvis/Docu
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [59]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Carga de archivo CSV</span>
@@ -7695,13 +7765,13 @@ El entorno virtual activo del kernel en el notebook está en: /home/ygalvis/Docu
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>/tmp/ipykernel_199466/3173352973.py:2: DtypeWarning: Columns (2) have mixed types. Specify dtype option on import or set low_memory=False.
+<pre>/tmp/ipykernel_13275/3173352973.py:2: DtypeWarning: Columns (2) have mixed types. Specify dtype option on import or set low_memory=False.
   csv = pd.read_csv("Dataset/caso etl.csv", header=0,delimiter=',') #espicifico qu etiene encabezados y esta separado por ;
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[59]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -7887,7 +7957,7 @@ El entorno virtual activo del kernel en el notebook está en: /home/ygalvis/Docu
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [60]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">config</span> <span class="o">=</span> <span class="n">load_config</span><span class="p">()</span>
@@ -7932,7 +8002,7 @@ El entorno virtual activo del kernel en el notebook está en: /home/ygalvis/Docu
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [61]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># DB connection</span>
@@ -7976,7 +8046,7 @@ El entorno virtual activo del kernel en el notebook está en: /home/ygalvis/Docu
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [62]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">db_name</span> <span class="o">=</span> <span class="s2">"ETL_prj"</span>
@@ -8033,7 +8103,7 @@ El entorno virtual activo del kernel en el notebook está en: /home/ygalvis/Docu
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [63]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Mostrar el header del DataFrame</span>
@@ -8048,7 +8118,7 @@ El entorno virtual activo del kernel en el notebook está en: /home/ygalvis/Docu
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[24]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[63]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -8106,7 +8176,7 @@ El entorno virtual activo del kernel en el notebook está en: /home/ygalvis/Docu
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [64]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
@@ -8150,7 +8220,7 @@ None
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [65]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
@@ -8185,7 +8255,7 @@ None
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [66]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Explode Shoes slice</span>
@@ -8232,7 +8302,7 @@ None
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [67]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Get data by Train Column and count of products by train</span>
@@ -8328,21 +8398,34 @@ luego usando este motor se envia un tsql al motor de DB para crear la tabla dond
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [68]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># crear conexión a la base de datos</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="sa">f</span><span class="s2">"postgresql://</span><span class="si">{</span><span class="n">db_user</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">db_password</span><span class="si">}</span><span class="s2">@</span><span class="si">{</span><span class="n">db_host</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">db_port</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">db_name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [69]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="sa">f</span><span class="s2">"postgresql://</span><span class="si">{</span><span class="n">db_user</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">db_password</span><span class="si">}</span><span class="s2">@</span><span class="si">{</span><span class="n">db_host</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">db_port</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">db_name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
     <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">text</span><span class="p">(</span><span class="s2">"""</span>
 <span class="s2">        CREATE TABLE IF NOT EXISTS Dataset (</span>
 <span class="s2">            id SERIAL PRIMARY KEY,</span>
-<span class="s2">            "DateTime" DATE,</span>
+<span class="s2">            "DateTime" Timestamptz,</span>
 <span class="s2">            "ID" VARCHAR(250),</span>
 <span class="s2">            "Prod_ID" VARCHAR(100),</span>
 <span class="s2">            "Type" VARCHAR(10),</span>
@@ -8412,7 +8495,7 @@ luego usando este motor se envia un tsql al motor de DB para crear la tabla dond
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [70]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Insertar datos en la tabla usando DataFrame a la tabla en PostgreSQL</span>
@@ -8467,7 +8550,7 @@ luego usando este motor se envia un tsql al motor de DB para crear la tabla dond
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [71]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Leer datos de la tabla</span>
@@ -8492,16 +8575,16 @@ luego usando este motor se envia un tsql al motor de DB para crear la tabla dond
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Datos en 'tabla_etl':
-(236001, datetime.date(2025, 2, 27), 'BYBAGDDIM', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 1.0, 0)
-(236002, datetime.date(2025, 2, 5), 'BXWAGDD6N', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 1.003703704, 0)
-(236003, datetime.date(2025, 2, 5), '9NGAGDD6M', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 0.996296296, 0)
-(236004, datetime.date(2025, 2, 4), 'XT7AGDD67', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 1.014814815, 0)
-(236005, datetime.date(2025, 2, 4), 'V9EAGDD66', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 0.97037037, 0)
-(236006, datetime.date(2025, 2, 4), 'GZ7AGDD65', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 0.988888889, 0)
-(236007, datetime.date(2025, 2, 4), 'RQVAGDD65', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 1.0, 0)
-(236008, datetime.date(2025, 2, 3), 'FLBAGDD5M', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 1.003703704, 0)
-(236009, datetime.date(2025, 2, 3), 'E0PAGDD5K', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 0.996296296, 0)
-(236010, datetime.date(2025, 1, 20), 'AL3AGCCY0', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 1.003703704, 0)
+(1, datetime.datetime(2025, 2, 27, 7, 34, 21, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400))), 'BYBAGDDIM', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 1.0, 0)
+(2, datetime.datetime(2025, 2, 5, 6, 57, 51, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400))), 'BXWAGDD6N', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 1.003703704, 0)
+(3, datetime.datetime(2025, 2, 5, 2, 7, 48, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400))), '9NGAGDD6M', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 0.996296296, 0)
+(4, datetime.datetime(2025, 2, 4, 23, 4, 32, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400))), 'XT7AGDD67', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 1.014814815, 0)
+(5, datetime.datetime(2025, 2, 4, 17, 45, 15, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400))), 'V9EAGDD66', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 0.97037037, 0)
+(6, datetime.datetime(2025, 2, 4, 15, 15, 41, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400))), 'GZ7AGDD65', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 0.988888889, 0)
+(7, datetime.datetime(2025, 2, 4, 11, 36, 37, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400))), 'RQVAGDD65', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 1.0, 0)
+(8, datetime.datetime(2025, 2, 3, 18, 31, 57, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400))), 'FLBAGDD5M', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 1.003703704, 0)
+(9, datetime.datetime(2025, 2, 3, 8, 31, 47, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400))), 'E0PAGDD5K', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 0.996296296, 0)
+(10, datetime.datetime(2025, 1, 20, 18, 17, 4, tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=68400))), 'AL3AGCCY0', '87426', 'F', 'C', 'PMX', 'MD1M66', 'kg', 1.003703704, 0)
 </pre>
 </div>
 </div>
@@ -8523,7 +8606,7 @@ luego usando este motor se envia un tsql al motor de DB para crear la tabla dond
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [38]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [72]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
@@ -8539,7 +8622,7 @@ luego usando este motor se envia un tsql al motor de DB para crear la tabla dond
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[38]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[72]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -8575,8 +8658,8 @@ luego usando este motor se envia un tsql al motor de DB para crear la tabla dond
 <tbody>
 <tr>
 <th>0</th>
-<td>236001</td>
-<td>2025-02-27</td>
+<td>1</td>
+<td>2025-02-27 12:34:21+00:00</td>
 <td>BYBAGDDIM</td>
 <td>87426</td>
 <td>F</td>
@@ -8589,8 +8672,8 @@ luego usando este motor se envia un tsql al motor de DB para crear la tabla dond
 </tr>
 <tr>
 <th>1</th>
-<td>236002</td>
-<td>2025-02-05</td>
+<td>2</td>
+<td>2025-02-05 11:57:51+00:00</td>
 <td>BXWAGDD6N</td>
 <td>87426</td>
 <td>F</td>
@@ -8603,8 +8686,8 @@ luego usando este motor se envia un tsql al motor de DB para crear la tabla dond
 </tr>
 <tr>
 <th>2</th>
-<td>236003</td>
-<td>2025-02-05</td>
+<td>3</td>
+<td>2025-02-05 07:07:48+00:00</td>
 <td>9NGAGDD6M</td>
 <td>87426</td>
 <td>F</td>
@@ -8617,8 +8700,8 @@ luego usando este motor se envia un tsql al motor de DB para crear la tabla dond
 </tr>
 <tr>
 <th>3</th>
-<td>236004</td>
-<td>2025-02-04</td>
+<td>4</td>
+<td>2025-02-05 04:04:32+00:00</td>
 <td>XT7AGDD67</td>
 <td>87426</td>
 <td>F</td>
@@ -8631,8 +8714,8 @@ luego usando este motor se envia un tsql al motor de DB para crear la tabla dond
 </tr>
 <tr>
 <th>4</th>
-<td>236005</td>
-<td>2025-02-04</td>
+<td>5</td>
+<td>2025-02-04 22:45:15+00:00</td>
 <td>V9EAGDD66</td>
 <td>87426</td>
 <td>F</td>
@@ -8645,8 +8728,8 @@ luego usando este motor se envia un tsql al motor de DB para crear la tabla dond
 </tr>
 <tr>
 <th>5</th>
-<td>236006</td>
-<td>2025-02-04</td>
+<td>6</td>
+<td>2025-02-04 20:15:41+00:00</td>
 <td>GZ7AGDD65</td>
 <td>87426</td>
 <td>F</td>
@@ -8659,8 +8742,8 @@ luego usando este motor se envia un tsql al motor de DB para crear la tabla dond
 </tr>
 <tr>
 <th>6</th>
-<td>236007</td>
-<td>2025-02-04</td>
+<td>7</td>
+<td>2025-02-04 16:36:37+00:00</td>
 <td>RQVAGDD65</td>
 <td>87426</td>
 <td>F</td>
@@ -8673,8 +8756,8 @@ luego usando este motor se envia un tsql al motor de DB para crear la tabla dond
 </tr>
 <tr>
 <th>7</th>
-<td>236008</td>
-<td>2025-02-03</td>
+<td>8</td>
+<td>2025-02-03 23:31:57+00:00</td>
 <td>FLBAGDD5M</td>
 <td>87426</td>
 <td>F</td>
@@ -8687,8 +8770,8 @@ luego usando este motor se envia un tsql al motor de DB para crear la tabla dond
 </tr>
 <tr>
 <th>8</th>
-<td>236009</td>
-<td>2025-02-03</td>
+<td>9</td>
+<td>2025-02-03 13:31:47+00:00</td>
 <td>E0PAGDD5K</td>
 <td>87426</td>
 <td>F</td>
@@ -8701,8 +8784,8 @@ luego usando este motor se envia un tsql al motor de DB para crear la tabla dond
 </tr>
 <tr>
 <th>9</th>
-<td>236010</td>
-<td>2025-01-20</td>
+<td>10</td>
+<td>2025-01-20 23:17:04+00:00</td>
 <td>AL3AGCCY0</td>
 <td>87426</td>
 <td>F</td>
