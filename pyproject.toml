@@ -1,32 +1,26 @@
-[project]
+[tool.poetry]
 name = "etl-project"
 version = "1.0.0"
-description = "Ejercicio de Extracción, Transformacion y Carga (ETL) para 8 trenes de producción"
-authors = [
-    {name = "Yoniliman Galvis",email = "yoniliman.galves@uao.edu.co"}
-]
-license = {text = "MIT"}
+description = "Ejercicio de Extracción, Transformación y Carga (ETL) para 8 trenes de producción"
+authors = ["Yoniliman Galvis <yoniliman.galves@uao.edu.co>"]
+license = "MIT"
 readme = "README.md"
-requires-python = ">=3.12"
-dependencies = [
-    "pandas (>=2.2.3,<3.0.0)",
-    "sqlalchemy (>=2.0.38,<3.0.0)",
-    "psycopg2-binary (>=2.9.10,<3.0.0)",
-    "psycopg2 (>=2.9.10,<3.0.0)",
-    "pyyaml (>=6.0.2,<7.0.0)",
-    "jupyter (>=1.1.1,<2.0.0)",
-    "seaborn (>=0.13.2,<0.14.0)",
-    "traitlets (>=5.14.3,<6.0.0)",
-    "matplotlib (>=3.10.1,<4.0.0)",
-    "scikit-learn (>=1.6.1,<2.0.0)",
-    "plotly (>=6.0.0,<7.0.0)"
-]
+packages = [{ include = "etl_project" }]
+
+[tool.poetry.dependencies]
+python = ">=3.12"
+pandas = ">=2.2.3,<3.0.0"
+sqlalchemy = ">=2.0.38,<3.0.0"
+psycopg2-binary = ">=2.9.10,<3.0.0"
+psycopg2 = ">=2.9.10,<3.0.0"
+pyyaml = ">=6.0.2,<7.0.0"
+jupyter = ">=1.1.1,<2.0.0"
+seaborn = ">=0.13.2,<0.14.0"
+traitlets = ">=5.14.3,<6.0.0"
+matplotlib = ">=3.10.1,<4.0.0"
+scikit-learn = ">=1.6.1,<2.0.0"
+plotly = ">=6.0.0,<7.0.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.poetry]
-packages = [
-    { include = "etl_project" }
-]
